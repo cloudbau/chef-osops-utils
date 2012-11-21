@@ -64,6 +64,17 @@ when "ubuntu","debian"
     key "53E8EA35"
     notifies :run, resources(:execute => "apt-get update"), :immediately
   end
+
+  apt_repository "openstack-folsom" do
+    #uri "http://ubuntu-cloud.archive.canonical.com/ubuntu"
+    #distribution "precise-updates/folsom"
+    uri "http://ppa.launchpad.net/openstack-ubuntu-testing/folsom-trunk-testing/ubuntu"
+    distribution node["lsb"]["codename"]
+    components ["main"]
+    keyserver "keyserver.ubuntu.com"
+    key "3B6F61A6"
+    notifies :run, resources(:execute => "apt-get update"), :immediately
+ end
 end
 
 
